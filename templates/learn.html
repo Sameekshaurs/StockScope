@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Learn · StockScope{% endblock %}
+{% block content %}
+<style>
+.learn-hero {
+  text-align: center;
+  margin-top: 60px;
+}
+.learn-hero h1 {
+  color: #f8b400;
+  font-weight: 700;
+}
+.learn-hero p {
+  color: #a9aebb;
+  max-width: 800px;
+  margin: 20px auto;
+  font-size: 1.1rem;
+}
+
+/* YouTube Section */
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+.video-card {
+  width: 360px;
+  background: #12151c;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: 0.3s ease;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(248,180,0,0.3);
+}
+.video-card iframe {
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+.video-card h5 {
+  color: #67e8f9;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+/* Blog Section */
+.blog-section {
+  margin-top: 70px;
+  text-align: center;
+}
+.blog-section h2 {
+  color: #f8b400;
+  margin-bottom: 30px;
+}
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+.blog-card {
+  background: #12151c;
+  border-radius: 15px;
+  width: 280px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(248,180,0,0.3);
+}
+.blog-card h4 {
+  color: #67e8f9;
+  margin-bottom: 10px;
+}
+.blog-card p {
+  color: #a9aebb;
+  font-size: 0.95rem;
+}
+.blog-card a {
+  color: #f8b400;
+  text-decoration: none;
+  font-weight: 500;
+}
+.blog-card a:hover {
+  color: #67e8f9;
+}
+
+/* Tips Section */
+.tips {
+  margin-top: 80px;
+  text-align: center;
+}
+.tips h2 {
+  color: #f8b400;
+  margin-bottom: 20px;
+}
+.tips p {
+  color: #a9aebb;
+  max-width: 700px;
+  margin: 0 auto 15px;
+  font-size: 1rem;
+}
+</style>
+
+<section class="learn-hero">
+  <h1>Learn the Market</h1>
+  <p>Whether you’re a complete beginner or an aspiring investor, explore our handpicked videos and articles to master the art of stock investing and prediction.</p>
+
+  <!-- 🎥 YouTube Learning Section -->
+   <section class="learn-section" style="text-align:center; margin-top:50px;">
+  <h1 style="color:#f8b400; font-weight:700;">Learn the Market</h1>
+  <p style="color:#a9aebb; max-width:800px; margin:15px auto;">
+    Whether you’re a complete beginner or an aspiring investor, explore our handpicked videos and articles to master the art of stock investing and prediction.
+  </p>
+
+  <div class="video-grid" style="display:flex; justify-content:center; flex-wrap:wrap; gap:30px; margin-top:40px;">
+    
+    <!-- Video 1 -->
+    <div class="video-card" style="background:#12151c; padding:15px; border-radius:12px; box-shadow:0 0 15px rgba(248,180,0,0.2); width:360px;">
+      <iframe width="100%" height="200" 
+              src="https://www.youtube.com/embed/p7HKvqRI_Bo" 
+              title="How does the stock market work?" 
+              frameborder="0" allowfullscreen></iframe>
+      <h5 style="margin-top:10px; color:#67e8f9;">Stock Market for Beginners</h5>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-card" style="background:#12151c; padding:15px; border-radius:12px; box-shadow:0 0 15px rgba(248,180,0,0.2); width:360px;">
+      <iframe width="100%" height="200" 
+              src="https://www.youtube.com/embed/F3QpgXBtDeo" 
+              title="How Stock Market Works (Explained Simply)" 
+              frameborder="0" allowfullscreen></iframe>
+      <h5 style="margin-top:10px; color:#67e8f9;">How Stock Market Works (Explained Simply)</h5>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-card" style="background:#12151c; padding:15px; border-radius:12px; box-shadow:0 0 15px rgba(248,180,0,0.2); width:360px;">
+      <iframe width="100%" height="200" 
+              src="https://www.youtube.com/embed/6rHh1uqUOEY" 
+              title="Understanding Stock Predictions" 
+              frameborder="0" allowfullscreen></iframe>
+      <h5 style="margin-top:10px; color:#67e8f9;">Understanding Stock Predictions</h5>
+    </div>
+  </div>
+</section>
+
+  
+  
+
+  <!-- 🧠 Blog Section -->
+  <div class="blog-section">
+    <h2>Blogs to Boost Your Knowledge</h2>
+    <div class="blogs">
+      <div class="blog-card">
+        <h4>Basics of Stock Trading</h4>
+        <p>Understand what stocks are, how the market functions, and how investors make profits safely.</p>
+        <a href="https://www.investopedia.com/articles/basics/06/invest1000.asp" target="_blank">Read More →</a>
+      </div>
+
+      <div class="blog-card">
+        <h4>Beginner’s Guide to Investing</h4>
+        <p>Learn how to start investing, pick your first stocks, and grow wealth with time.</p>
+        <a href="https://groww.in/blog/how-to-invest-in-stock-market" target="_blank">Read More →</a>
+      </div>
+
+      <div class="blog-card">
+        <h4>How AI Predicts Stock Trends</h4>
+        <p>Discover how machine learning models like ARIMA and LSTM can forecast market behavior.</p>
+        <a href="https://www.analyticsvidhya.com/blog/2021/07/stock-market-analysis-using-machine-learning/" target="_blank">Read More →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💡 Tips Section -->
+  <div class="tips">
+    <h2>Investment Wisdom </h2>
+    <p>Never invest blindly — research companies before buying stocks.</p>
+    <p>Diversify your portfolio; don’t put all your money into one stock.</p>
+    <p>Long-term investments often outperform short-term trades.</p>
+    <p>Use AI-based tools like <strong>StockScope</strong> to make data-driven decisions!</p>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}

@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block title %}Home · StockScope{% endblock %}
+
+{% block content %}
+<style>
+/* Hero Section */
+.hero {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #151821, #0a0c10);
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f8b400;
+  text-shadow: 0 0 20px rgba(248,180,0,0.4);
+}
+.hero p {
+  color: #a9afc7;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+.hero img {
+  width: 400px;
+  margin-top: 50px;
+  filter: drop-shadow(0 0 25px rgba(248,180,0,0.3));
+}
+
+/* Background animation */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: conic-gradient(
+    from 90deg,
+    rgba(248,180,0,0.05),
+    rgba(103,232,249,0.05),
+    rgba(248,180,0,0.05)
+  );
+  animation: rotate 12s linear infinite;
+}
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Prediction Form */
+.predict {
+  position: relative;
+  margin: -100px auto 60px;
+  max-width: 700px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(248,180,0,0.2);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+  text-align: center;
+}
+.predict h3 {
+  color: #67e8f9;
+  font-weight: 600;
+}
+.predict input {
+  width: 80%;
+  padding: 12px;
+  margin: 20px 0;
+  background: #0f1115;
+  border: 1px solid #2b313f;
+  color: #e0e0e0;
+  border-radius: 10px;
+}
+.predict input:focus {
+  outline: none;
+  border-color: #f8b400;
+  box-shadow: 0 0 10px #f8b40080;
+}
+.predict button {
+  background: linear-gradient(90deg, #f8b400, #ff9500);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #0f1115;
+  transition: 0.3s;
+}
+.predict button:hover {
+  background: linear-gradient(90deg, #ff9500, #f8b400);
+  transform: translateY(-3px);
+}
+
+/* Features */
+.features {
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+.feature-card {
+  background: #12151c;
+  border-radius: 15px;
+  padding: 30px;
+  width: 260px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(248,180,0,0.3);
+}
+.feature-card i {
+  color: #f8b400;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.feature-card h5 {
+  color: #67e8f9;
+  margin-bottom: 8px;
+}
+.feature-card p {
+  color: #a9aebb;
+  font-size: 0.95rem;
+}
+</style>
+
+<section class="hero">
+  <div>
+    <h1>Predict the Future of Stocks</h1>
+    <p>AI-Driven. Data-Powered. Investor-Focused.</p>
+    <img src="{{ url_for('static', filename='tile7.png') }}" alt="Stock Growth Graph">
+  </div>
+</section>
+
+<section class="predict" style="text-align:center; margin-top:60px;">
+  <h3 style="color:#f8b400; font-weight:700;">Search or Select a Stock Symbol to Predict</h3>
+
+  {% if not_found %}
+  <div class="alert alert-danger mt-3" style="display:inline-block;">❌ Stock Symbol Not Found. Try Again.</div>
+  {% endif %}
+
+  <div class="stock-search-container" style="position:relative; display:inline-block; margin-top:25px; text-align:left;">
+    <input type="text" id="stockSearch" placeholder="🔍 Type to search"
+           style="width:320px; padding:12px 15px; border-radius:8px; border:none; background:#1c1f26; color:#f5f5f5; font-size:1rem; outline:none; box-shadow:0 0 12px rgba(0,0,0,0.4);"
+           onkeyup="filterStocks()">
+    
+    <ul id="stockDropdown" style="display:none; position:absolute; top:50px; width:100%; max-height:260px; overflow-y:auto; background:#12151c; border-radius:8px; border:1px solid #2a2d34; list-style:none; padding:0; margin:5px 0; box-shadow:0 5px 15px rgba(0,0,0,0.4); z-index:10;">
+      <li data-value="INFY">💻 Infosys (INFY)</li>
+      <li data-value="TCS">💻 Tata Consultancy Services (TCS)</li>
+      <li data-value="WIPRO">💻 Wipro (WIPRO)</li>
+      <li data-value="HCLTECH">💻 HCL Technologies (HCLTECH)</li>
+      <li data-value="TECHM">💻 Tech Mahindra (TECHM)</li>
+
+      <li data-value="HDFCBANK">🏦 HDFC Bank (HDFCBANK)</li>
+      <li data-value="ICICIBANK">🏦 ICICI Bank (ICICIBANK)</li>
+      <li data-value="SBIN">🏦 State Bank of India (SBIN)</li>
+      <li data-value="AXISBANK">🏦 Axis Bank (AXISBANK)</li>
+      <li data-value="BAJFINANCE">🏦 Bajaj Finance (BAJFINANCE)</li>
+
+      <li data-value="LT">⚙️ Larsen & Toubro (LT)</li>
+      <li data-value="TATASTEEL">⚙️ Tata Steel (TATASTEEL)</li>
+      <li data-value="POWERGRID">⚙️ Power Grid Corp (POWERGRID)</li>
+      <li data-value="ULTRACEMCO">⚙️ UltraTech Cement (ULTRACEMCO)</li>
+
+      <li data-value="TATAMOTORS">🚗 Tata Motors (TATAMOTORS)</li>
+      <li data-value="MARUTI">🚗 Maruti Suzuki (MARUTI)</li>
+      <li data-value="M&M">🚗 Mahindra & Mahindra (M&M)</li>
+
+      <li data-value="RELIANCE">💡 Reliance Industries (RELIANCE)</li>
+      <li data-value="ONGC">💡 Oil & Natural Gas Corp (ONGC)</li>
+      <li data-value="COALINDIA">💡 Coal India (COALINDIA)</li>
+      <li data-value="NTPC">💡 NTPC Ltd (NTPC)</li>
+
+      <li data-value="ITC">🏠 ITC Ltd (ITC)</li>
+      <li data-value="HINDUNILVR">🏠 Hindustan Unilever (HINDUNILVR)</li>
+      <li data-value="BRITANNIA">🏠 Britannia Industries (BRITANNIA)</li>
+    </ul>
+  </div>
+
+  <form id="stockForm" action="{{ url_for('insertintotable') }}" method="POST" style="margin-top:25px;">
+    <input type="hidden" id="stockSymbol" name="nm">
+    <button type="submit" 
+            style="background:#f8b400; color:#12151c; font-weight:600; padding:10px 25px; border:none; border-radius:8px; cursor:pointer; transition:0.3s;">
+      🚀 Predict Now
+    </button>
+  </form>
+</section>
+
+<script>
+const searchInput = document.getElementById("stockSearch");
+const dropdown = document.getElementById("stockDropdown");
+const hiddenInput = document.getElementById("stockSymbol");
+
+searchInput.addEventListener("focus", () => dropdown.style.display = "block");
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".stock-search-container")) dropdown.style.display = "none";
+});
+
+function filterStocks() {
+  const query = searchInput.value.toUpperCase();
+  const items = dropdown.getElementsByTagName("li");
+  let hasMatch = false;
+  for (let item of items) {
+    const txtValue = item.textContent || item.innerText;
+    if (txtValue.toUpperCase().includes(query)) {
+      item.style.display = "";
+      hasMatch = true;
+    } else {
+      item.style.display = "none";
+    }
+  }
+  dropdown.style.display = hasMatch ? "block" : "none";
+}
+
+dropdown.querySelectorAll("li").forEach(li => {
+  li.addEventListener("click", () => {
+    searchInput.value = li.textContent.trim();
+    hiddenInput.value = li.dataset.value;
+    dropdown.style.display = "none";
+  });
+});
+</script>
+
+<style>
+#stockDropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  border-bottom: 1px solid #1f232d;
+  transition: background 0.2s;
+}
+#stockDropdown li:hover {
+  background: #1c1f26;
+  color: #f8b400;
+}
+#stockDropdown li:last-child {
+  border-bottom: none;
+}
+</style>
+
+
+
+<section class="features" style="margin-top: 60px; text-align: center;">
+  <div class="feature-card" style="display:inline-block; width:220px; margin:15px; background:#12151c; padding:25px; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:0.3s;">
+    <i class="fa-solid fa-chart-line" style="color:#f8b400; font-size:2rem; margin-bottom:10px;"></i>
+    <h5 style="color:#67e8f9;">Smart Predictions</h5>
+    <p style="color:#a9aebb;">Uses <b>ARIMA</b> and <b>Linear Regression</b> models to forecast future stock trends with data-driven accuracy.</p>
+  </div>
+
+  <div class="feature-card" style="display:inline-block; width:220px; margin:15px; background:#12151c; padding:25px; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:0.3s;">
+    <i class="fa-solid fa-graduation-cap" style="color:#f8b400; font-size:2rem; margin-bottom:10px;"></i>
+    <h5 style="color:#67e8f9;">Learn as You Explore</h5>
+    <p style="color:#a9aebb;">Perfect for <b>beginners and students</b> — visualize market behavior, understand analytics, and grow financial literacy.</p>
+  </div>
+
+  <div class="feature-card" style="display:inline-block; width:220px; margin:15px; background:#12151c; padding:25px; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:0.3s;">
+    <i class="fa-solid fa-database" style="color:#f8b400; font-size:2rem; margin-bottom:10px;"></i>
+    <h5 style="color:#67e8f9;">Live Market Data</h5>
+    <p style="color:#a9aebb;">Pulls <b>real-time stock information</b> directly from Yahoo Finance for instant, reliable insights.</p>
+  </div>
+
+  <div class="feature-card" style="display:inline-block; width:220px; margin:15px; background:#12151c; padding:25px; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition:0.3s;">
+    <i class="fa-solid fa-shield-halved" style="color:#f8b400; font-size:2rem; margin-bottom:10px;"></i>
+    <h5 style="color:#67e8f9;">Secure & Personalized</h5>
+    <p style="color:#a9aebb;">Your access is protected with <b>Flask-Login</b> and <b>SQLAlchemy</b>, ensuring safe and private user experience.</p>
+  </div>
+</section>
+
+{% endblock %}

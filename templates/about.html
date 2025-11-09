@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}About · StockScope{% endblock %}
+{% block content %}
+
+<!-- Font Awesome for LinkedIn icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.about-section {
+  text-align: center;
+  margin-top: 60px;
+}
+.about-section h1 {
+  color: #f8b400;
+  font-weight: 700;
+}
+.about-section p {
+  color: #a9aebb;
+  max-width: 850px;
+  margin: 20px auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Team Section */
+.team {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.member {
+  background: #12151c;
+  padding: 35px 25px;
+  width: 240px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none !important;
+}
+.member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(248,180,0,0.3);
+}
+.member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #f8b400;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+.member h5 {
+  color: #67e8f9;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.member p {
+  color: #a9aebb;
+  font-size: 0.95rem;
+  margin-top: 5px;
+  text-decoration: none;
+}
+.member .linkedin-icon {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 1.5rem;
+  color: #0077b5;
+  transition: color 0.3s ease;
+}
+.member .linkedin-icon:hover {
+  color: #f8b400;
+}
+</style>
+
+<section class="about-section">
+  <h1>About StockScope</h1>
+  <p style="
+  color: #a9aebb;
+  max-width: 850px;
+  margin: 25px auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+">
+  <b style="color:#f8b400;">StockScope</b> is an <b style="color:#67e8f9;">AI-powered platform</b> designed to simplify 
+  stock market analysis for learners, students, and aspiring investors. It provides a 
+  <b>simplified and educational environment</b> where anyone can explore how markets behave, 
+  understand prediction models, and build financial literacy through data-driven learning.<br><br>
+
+  With <b style="color:#f8b400;">customizable stock inputs</b>, <b>interactive visualizations</b>, and 
+  <b>machine learning–powered forecasting</b>, StockScope bridges the gap between technology and finance. 
+  The system uses <b style="color:#67e8f9;">live market data</b> to deliver accurate insights and forecasts, 
+  empowering users to analyze trends with ease. Built with a secure login system and 
+  accessible on all devices, it offers a <b>modern, seamless, and user-friendly experience</b> for everyone 
+  interested in understanding the world of stocks.
+</p>
+
+
+  <div class="team">
+    <div class="member">
+      <img src="{{ url_for('static', filename='team/sameeksha.jpg') }}" alt="Sameeksha M Urs">
+      <h5>Sameeksha M Urs</h5>
+      <p>Student </p>
+      <a href="https://www.linkedin.com/in/sameeksha-m-urs-1999702a2?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="linkedin-icon" title="View LinkedIn Profile">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='team/saniya.jpg') }}" alt="Saniya Kousar">
+      <h5>Saniya Kousar</h5>
+      <p>Student </p>
+      <a href="https://www.linkedin.com/in/saniya-kousar" target="_blank" class="linkedin-icon" title="View LinkedIn Profile">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='team/sneha.jpg') }}" alt="Sneha Kamate">
+      <h5>Sneha Kamate</h5>
+      <p>Student</p>
+      <a href="https://www.linkedin.com/in/sneha-kamate-05ab14307/" target="_blank" class="linkedin-icon" title="View LinkedIn Profile">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='team/vaisiri.jpg') }}" alt="Vaisiri M G">
+      <h5>Vaisiri M G</h5>
+      <p>Student </p>
+      <a href="https://www.linkedin.com/in/vaisiri-m-g" target="_blank" class="linkedin-icon" title="View LinkedIn Profile">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

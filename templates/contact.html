@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Contact · StockScope{% endblock %}
+{% block content %}
+<style>
+.contact-hero {
+  text-align: center;
+  margin-top: 60px;
+}
+.contact-hero h1 {
+  color: #f8b400;
+}
+.contact-hero p {
+  color: #a9aebb;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* Contact Card */
+.contact-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(248,180,0,0.2);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+}
+.contact-card i {
+  color: #f8b400;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.contact-card p {
+  color: #a9aebb;
+  margin: 10px 0;
+}
+.contact-card a {
+  color: #67e8f9;
+  text-decoration: none;
+}
+.contact-card a:hover {
+  color: #f8b400;
+}
+
+/* Map */
+.map-container {
+  margin-top: 40px;
+  text-align: center;
+}
+.map-container iframe {
+  width: 80%;
+  height: 300px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+}
+</style>
+
+<section class="contact-hero">
+  <h1>Get in Touch</h1>
+  <p>We’d love to hear from you! Whether it’s feedback, questions, or collaboration — reach out anytime.</p>
+
+  <div class="contact-card">
+    <p><i class="fa-solid fa-envelope"></i> support@stockscope.com</p>
+    <p><i class="fa-solid fa-phone"></i> +91 8123417871</p>
+    <p><i class="fa-solid fa-location-dot"></i> NIE North-Mysore, India</p>
+   
+  </div>
+
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.4926845631057!2d76.63938061479282!3d12.29581089131388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf6bdb0874b7ff%3A0x2c9ab8b4bcb45a3d!2sMysuru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1709832220000!5m2!1sen!2sin" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+{% endblock %}
